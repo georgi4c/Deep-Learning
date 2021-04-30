@@ -1,0 +1,78 @@
+conda create --name myenv
+conda activate myenv 
+
+
+conda create -n tf-gpu tensorflow-gpu
+conda activate tf-gpu
+
+tf.test.gpu_device_name()
+tf.config.list_physical_devices()
+
+
+(tf-gpu) D:\Projects\ArtificialIntelligence>python
+Python 3.8.5 (default, Sep  3 2020, 21:29:08) [MSC v.1916 64 bit (AMD64)] :: Anaconda, Inc. on win32
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import tensorflow as tf
+>>> sess = tf.Session(config=tf.ConfigProto(log_device_placement=True))
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: module 'tensorflow' has no attribute 'Session'
+>>> from __future__ import absolute_import, division, print_function, unicode_literals
+>>> print("Num GPUs Available: ", len(tf.config.experimental.list_physical_devices('GPU')))
+Num GPUs Available:  0
+>>>
+
+
+C:\Users\George\anaconda3\Scripts
+C:\Users\George\anaconda3
+C:\Users\George\anaconda3\Library\bin
+
+https://stackoverflow.com/questions/65273118/why-is-tensorflow-not-recognizing-my-gpu-after-conda-install
+https://towardsdatascience.com/setting-up-tensorflow-on-windows-gpu-492d1120414c
+
+conda install tensorflow-gpu=2.1
+pip install tensorflow-gpu==2.3.1
+
+
+
+conda install tensorflow-gpu=2.3 tensorflow=2.3=mkl_py38h1fcfbd6_0
+
+pip install jupyter ipykernel seaborn matplotlib
+
+pip install ipykernel --user
+
+python -m ipykernel install --user --name tf-gpu --display-name "tf-gpu"
+
+PUT envs\Library\bin in Path !!!!
+
+jupyter kernelspec uninstall unwanted-kernel
+
+conda install -c anaconda tensorflow-gpu
+
+https://www.tensorflow.org/install/source#gpu
+
+C:\Users\George\anaconda3\envs\tf-gpu24\Library\bin
+C:\Users\George\anaconda3\envs\tf-gpu\Library\bin
+
+
+
+import tensorflow as tf
+gpus = tf.config.experimental.list_physical_devices('GPU')
+if gpus:
+    try:
+        # Currently, memory growth needs to be the same across GPUs
+        for gpu in gpus:
+            tf.config.experimental.set_memory_growth(gpu, True)
+        logical_gpus = tf.config.experimental.list_logical_devices('GPU')
+        print(len(gpus), "Physical GPUs,", len(logical_gpus), "Logical GPUs")
+    except RuntimeError as e:
+        # Memory growth must be set before GPUs have been initialized
+        print(e)
+		
+		
+
+import os
+os.environ['CUDA_VISIBLE_DEVICES'] = '-1'
+
+
+
